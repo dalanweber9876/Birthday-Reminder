@@ -25,5 +25,5 @@ urlpatterns = [
     path('', include('apps.birthdays.urls', namespace='birthdays')),
 
     # Include the URLs for the user account page (users app)
-    path('account', include('apps.users.urls', namespace='users')),
+    path('accounts/', include('apps.users.urls', namespace='users')),
 ]

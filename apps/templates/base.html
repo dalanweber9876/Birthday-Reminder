@@ -1,9 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Birthday Reminder</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    {% block extra_head %}
+    <!-- Additional CSS or JS can be added here -->
+    {% endblock %}
   </head>
   <body>
     <header>
@@ -15,6 +21,18 @@
             <a href="{% url 'birthdays:add' %}">Add Birthdays</a>
           </li>
           <li><a href="{% url 'users:account' %}">Profile</a></li>
+
+          {% if user.is_authenticated %}
+          <li><a href="#">Welcome, {{ user.username }}</a></li>
+          <li>
+            <form method="post" action="{% url 'users:logout' %}">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+          </li>
+          {% else %}
+          <li><a href="{% url 'users:login' %}">Login</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>

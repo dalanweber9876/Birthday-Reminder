@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block content %}
 <h2>Welcome to the Birthday Reminder App!</h2>
 <p>Stay updated with the birthdays of your friends and loved ones!</p>
-<h1>Just making sure that this works</h1>
+<h1>Here are your birthdays</h1>
+<ul>
+  {% for birthday in birthdays %}
+  <li><strong>{{ birthday.name }}</strong> - {{ birthday.date }}</li>
+  {% endfor %}
+</ul>
 {% endblock %}

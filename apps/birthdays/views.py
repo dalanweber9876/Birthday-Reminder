@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from apps.birthdays.models import Birthday
 
 def home(request):
-    birthdays = [
-        {'name': 'Alice', 'date': '2023-01-01'},
-        {'name': 'Bob', 'date': '2023-02-02'},
-        {'name': 'Charlie', 'date': '2023-03-03'},
-    ]
+    birthdays = Birthday.objects.all()
+    
     return render(request, 'birthdays/home.html', {
         'birthdays': birthdays
         })
