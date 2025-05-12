@@ -1,10 +1,19 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block extra_head %}
+<script src="{% static 'birthdays/js/countdown.js' %}" defer></script>
+{% endblock %} {% block content %}
 <h2>Welcome to the Birthday Reminder App!</h2>
 <p>Stay updated with the birthdays of your friends and loved ones!</p>
 <h1>Here are your birthdays</h1>
 <ul>
   {% for birthday in birthdays %}
-  <li><strong>{{ birthday.name }}</strong> - {{ birthday.date }}</li>
+  <!-- <li><strong>{{ birthday.name }}</strong> - {{ birthday.date }}</li> -->
+  <div class="birthday-entry">
+    <h3>{{ birthday.name }} ({{ birthday.relationship }})</h3>
+    <p>Birthday: {{ birthday.date }}</p>
+    <p class="countdown" data-birthday="{{ birthday.date|date:'Y-m-d' }}">
+      Loading countdown...
+    </p>
+  </div>
   {% endfor %}
 </ul>
 {% endblock %}

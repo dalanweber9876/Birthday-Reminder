@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from apps.birthdays.models import Birthday
+from .forms import BirthdayForm
 
 def home(request):
     birthdays = Birthday.objects.all()
@@ -10,5 +11,17 @@ def home(request):
         })
 
 
+# def add_birthday(request):
+#     return render(request, 'birthdays/add_birthday.html')
+
 def add_birthday(request):
-    return render(request, 'birthdays/add_birthday.html')
+    if request.method == 'POST':
+        form = BirthdayForm(request.POST)
+        if form.is_valid():
+            birthday = form.save(commit=False)
+            birthday.user = request.user
+            birthday.save()
+            return redirect('birthdays:add')  # change this to your actual view
+    else:
+        form = BirthdayForm()
+    return render(request, 'birthdays/add_birthday.html', {'form': form})
