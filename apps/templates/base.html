@@ -23,7 +23,6 @@
           <li><a href="{% url 'users:account' %}">Profile</a></li>
 
           {% if user.is_authenticated %}
-          <li><a href="#">Welcome, {{ user.username }}</a></li>
           <li>
             <form method="post" action="{% url 'users:logout' %}">
               {% csrf_token %}

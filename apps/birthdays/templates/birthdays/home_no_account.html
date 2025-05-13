@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Welcome to Birthday Reminder!</h1>
+<p>Please sign in to start remembering your loved one's birthdays</p>
+<a href="{% url 'users:login' %}">Login</a>
+
+{% endblock %}

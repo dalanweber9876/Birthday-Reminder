@@ -21,7 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      if (diff < 24 * 60 * 60 * 1000) {
+      if (
+        nextBirthday.getDate() == now.getDate() &&
+        nextBirthday.getMonth() == now.getMonth()
+      ) {
+        birthday.textContent = "Happy Birthday!!";
+      } else if (diff < 24 * 60 * 60 * 1000) {
         birthday.textContent = `${hours}h ${minutes}m ${seconds}s left`;
       } else {
         birthday.textContent = `${days}d left`;

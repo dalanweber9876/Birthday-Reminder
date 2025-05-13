@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .forms import UserCreationForm
 
 
 def account(request):
@@ -10,3 +11,14 @@ def account(request):
     else:
         print("User is not logged in.")
         return redirect('users:login')
+    
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users:login')
+    
+    else:
+        form = UserCreationForm()
+        return render(request, 'registration/register.html', {'form': form})

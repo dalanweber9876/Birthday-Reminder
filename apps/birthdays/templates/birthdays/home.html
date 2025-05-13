@@ -3,17 +3,23 @@
 {% endblock %} {% block content %}
 <h2>Welcome to the Birthday Reminder App!</h2>
 <p>Stay updated with the birthdays of your friends and loved ones!</p>
-<h1>Here are your birthdays</h1>
-<ul>
-  {% for birthday in birthdays %}
-  <!-- <li><strong>{{ birthday.name }}</strong> - {{ birthday.date }}</li> -->
-  <div class="birthday-entry">
-    <h3>{{ birthday.name }} ({{ birthday.relationship }})</h3>
-    <p>Birthday: {{ birthday.date }}</p>
-    <p class="countdown" data-birthday="{{ birthday.date|date:'Y-m-d' }}">
-      Loading countdown...
-    </p>
-  </div>
-  {% endfor %}
-</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Your List of Birthdays</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for birthday in birthdays %}
+    <tr class="birthday-entry">
+      <td>{{ birthday.name }}</td>
+      <td class="countdown" data-birthday="{{ birthday.date|date:'Y-m-d' }}">
+        Loading countdown...
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

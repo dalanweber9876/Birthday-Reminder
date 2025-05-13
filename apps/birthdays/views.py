@@ -1,18 +1,17 @@
 from django.shortcuts import render, redirect
-from django.db.models.functions import ExtractMonth, ExtractDay
-from django.http import HttpResponse
+from django.contrib.auth.models import AnonymousUser
 from apps.birthdays.models import Birthday
 from .forms import BirthdayForm
 
 def home(request):
-    birthdays = sorted(Birthday.objects.all(), key=lambda b: b.days_until_birthday())
+    if isinstance(request.user, AnonymousUser):
+        return render(request, 'birthdays/home_no_account.html')
+
+    birthdays = sorted(Birthday.objects.filter(user = request.user), key=lambda b: b.days_until_birthday())
     return render(request, 'birthdays/home.html', {
-        'birthdays': birthdays
+        'birthdays': birthdays,
+        'user': request.user,
         })
-
-
-# def add_birthday(request):
-#     return render(request, 'birthdays/add_birthday.html')
 
 def add_birthday(request):
     if request.method == 'POST':
