@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Birthday countdown script loaded");
-  document.querySelectorAll("[data-birthday]").forEach((el) => {
-    const dateStr = el.dataset.birthday;
+  document.querySelectorAll("[data-birthday]").forEach((birthday) => {
+    const dateStr = birthday.dataset.birthday;
     const birthdayDate = new Date(dateStr + "T00:00:00");
 
     function updateCountdown() {
@@ -22,7 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      el.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s left`;
+      if (diff < 24 * 60 * 60 * 1000) {
+        birthday.textContent = `${hours}h ${minutes}m ${seconds}s left`;
+      } else {
+        birthday.textContent = `${days}d left`;
+      }
     }
 
     updateCountdown();
