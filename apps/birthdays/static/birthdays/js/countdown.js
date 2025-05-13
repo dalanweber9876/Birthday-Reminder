@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (diff < 24 * 60 * 60 * 1000) {
         birthday.textContent = `${hours}h ${minutes}m ${seconds}s left`;
       } else {
-        birthday.textContent = `${days}d left`;
+        birthday.textContent = `${days + 1}d left`;
       }
     }
 

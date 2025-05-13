@@ -13,7 +13,7 @@ class BirthdayForm(forms.ModelForm):
             'name': 'Name',
             'date': 'Birthday Date',
             'relationship': 'Relationship',
-            'background': 'Background/Notes',
+            'background': 'Background/Notes (optional)',
             'email': 'Email (optional)',
             'phone_number': 'Phone Number (optional)',
         }

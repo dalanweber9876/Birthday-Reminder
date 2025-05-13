@@ -13,6 +13,7 @@ def account(request):
         return redirect('users:login')
     
 def register(request):
+    
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -21,4 +22,4 @@ def register(request):
     
     else:
         form = UserCreationForm()
-        return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
