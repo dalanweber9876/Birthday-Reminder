@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -11,6 +12,14 @@ class Birthday(models.Model):
     background = models.TextField(blank=True)  # Background or notes about the person, optional
     email = models.EmailField(blank=True, null=True)  # Optional email field
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional phone number field
+
+    def days_until_birthday(self):
+        today = now().date()
+
+        this_year_birthday = self.date.replace(year=today.year)
+        if this_year_birthday < today:
+            this_year_birthday = self.date.replace(year=today.year + 1)
+        return (this_year_birthday - today).days
 
     def __str__(self):
         return self.name
