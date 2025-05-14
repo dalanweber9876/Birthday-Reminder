@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div>
+  <h2>{{ birthday.name }}'s Birthday</h2>
+  <div>
+    <h3>Birthday</h3>
+    <p>{{ birthday.date }}</p>
+  </div>
+
+  <div>
+    <h3>Relationship</h3>
+    <p>{{ birthday.relationship }}</p>
+  </div>
+
+  <div>
+    <h3>Background</h3>
+    {% if birthday.background %}
+    <p>{{ birthday.background }}</p>
+
+    {% else %}
+    <p class="empty">No background provided</p>
+    {% endif %}
+  </div>
+
+  <div>
+    <h3>Email</h3>
+    {% if birthday.email %}
+    <p>{{ birthday.email }}</p>
+
+    {% else %}
+    <p class="empty">No email provided</p>
+    {% endif %}
+  </div>
+
+  <div>
+    <h3>Phone Number</h3>
+    {% if birthday.phone_number %}
+    <p>{{ birthday.phone_number }}</p>
+
+    {% else %}
+    <p class="empty">No phone number provided</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

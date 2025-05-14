@@ -18,6 +18,9 @@
       <td class="countdown" data-birthday="{{ birthday.date|date:'Y-m-d' }}">
         Loading countdown...
       </td>
+      <td><a href="{% url 'birthdays:view'   birthday.id %}">View</a></td>
+      <td><a href="{% url 'birthdays:edit'   birthday.id %}">Edit</a></td>
+      <td><a href="{% url 'birthdays:delete' birthday.id %}">Delete</a></td>
     </tr>
     {% endfor %}
   </tbody>
