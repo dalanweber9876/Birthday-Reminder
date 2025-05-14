@@ -22,3 +22,6 @@ db.sqlite3
 
 # Mac system files
 .DS_Store
+
+# Others
+mvp.md
