@@ -12,7 +12,6 @@ class Birthday(models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional
 
     def days_until_birthday(self):
-        # today = now().date()
         today = localdate()
 
         # Update the birthday date to this year

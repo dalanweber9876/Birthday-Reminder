@@ -25,7 +25,11 @@
       <td>{{today_month}}</td>
       <td>{{today_year}}</td>
       {% if birthday.days_until_birthday <= 0 %}
-      <td><a href="{% url 'messages:message' %}">Message</a></td>
+      <td>
+        <a href="{% url 'messages:message' birthday.id %}"
+          >Generate Birthday Message with AI</a
+        >
+      </td>
       {% endif %}
     </tr>
     {% endfor %}
