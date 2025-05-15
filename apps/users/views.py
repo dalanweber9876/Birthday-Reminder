@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from apps.birthdays.models import Birthday
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+import json
 
 
 def account(request):
@@ -25,3 +28,20 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+@login_required
+def set_timezone(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        tz = data.get("timezone")
+        if tz:
+            # Validate timezone string
+            import pytz
+            if tz in pytz.all_timezones:
+                # Save to user profile or session
+                profile = request.user.userprofile
+                profile.timezone = tz
+                profile.save()
+                return JsonResponse({"status": "success"})
+        return JsonResponse({"status": "error", "message": "Invalid timezone"}, status=400)
+    return JsonResponse({"status": "error", "message": "Only POST allowed"}, status=405)

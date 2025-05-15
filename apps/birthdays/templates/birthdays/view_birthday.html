@@ -40,5 +40,8 @@
     <p class="empty">No phone number provided</p>
     {% endif %}
   </div>
+
+  <a href="{% url 'birthdays:edit'   birthday.id %}">Edit</a>
+  <a href="{% url 'birthdays:home' %}">Return Home</a>
 </div>
 {% endblock %}

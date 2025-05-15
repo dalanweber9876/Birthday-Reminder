@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.timezone import now
+from django.utils.timezone import now, localdate
 
 class Birthday(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='birthdays')
@@ -12,7 +12,8 @@ class Birthday(models.Model):
     phone_number = models.CharField(max_length=15, blank=True, null=True)  # Optional
 
     def days_until_birthday(self):
-        today = now().date()
+        # today = now().date()
+        today = localdate()
 
         # Update the birthday date to this year
         birthday = self.date.replace(year=today.year)

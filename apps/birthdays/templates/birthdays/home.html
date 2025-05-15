@@ -21,6 +21,12 @@
       <td><a href="{% url 'birthdays:view'   birthday.id %}">View</a></td>
       <td><a href="{% url 'birthdays:edit'   birthday.id %}">Edit</a></td>
       <td><a href="{% url 'birthdays:delete' birthday.id %}">Delete</a></td>
+
+      <td>{{today_month}}</td>
+      <td>{{today_year}}</td>
+      {% if birthday.days_until_birthday <= 0 %}
+      <td><a href="{% url 'messages:message' %}">Message</a></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

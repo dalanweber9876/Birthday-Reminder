@@ -3,15 +3,18 @@ from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
 from apps.birthdays.models import Birthday
 from .forms import BirthdayForm
+from datetime import date
 
 def home(request):
     if isinstance(request.user, AnonymousUser):
         return render(request, 'birthdays/home_no_account.html')
-
+    
     birthdays = sorted(Birthday.objects.filter(user = request.user), key=lambda b: b.days_until_birthday())
+    
     return render(request, 'birthdays/home.html', {
         'birthdays': birthdays,
         'user': request.user,
+        
         })
 
 def add_birthday(request):

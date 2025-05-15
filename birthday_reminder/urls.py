@@ -10,4 +10,7 @@ urlpatterns = [
 
     # Include the URLs for the user account page (users app)
     path('accounts/', include('apps.users.urls', namespace='users')),
+
+    # Include the URLs for the messaging page (ai_messages app)
+    path('message/', include('apps.ai_messages.urls', namespace='messages')),
 ]
