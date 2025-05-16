@@ -1,5 +1,27 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div>
-  <h2>This is the message page</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <p>Select the tone of the birthday message:</p>
+
+    <label
+      ><input type="radio" name="tone" value="professional" required />
+      Professional</label
+    ><br />
+    <label
+      ><input type="radio" name="tone" value="short and sweet" /> Short and
+      Sweet</label
+    ><br />
+    <label><input type="radio" name="tone" value="funny" /> Funny</label><br />
+    <label><input type="radio" name="tone" value="heartfelt" /> Heartfelt</label
+    ><br />
+
+    <button type="submit">Generate Birthday Message</button>
+  </form>
+
+  {% if message %}
+  <h3>Generated Message:</h3>
+  <p>{{ message }}</p>
+  {% endif %}
 </div>
 {% endblock %}

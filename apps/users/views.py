@@ -1,20 +1,19 @@
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
-from apps.birthdays.models import Birthday
 from django.http import JsonResponse
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.core.management import call_command
 import json
+import pytz
+
 
 
 def account(request):
     if request.user.is_authenticated:
-        birthdays = sorted(Birthday.objects.filter(user = request.user), key=lambda b: b.days_until_birthday())
-        return render(request, 'birthdays/home.html', {
-        'isAuthenticated': True,
-        'birthdays': birthdays,
-        })
+        call_command('send_reminders')
+        return render(request, 'users/account.html')
     else:
-        print("User is not logged in.")
         return redirect('users:login')
     
 def register(request):
@@ -22,7 +21,11 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            profile = user.userprofile
+            profile.timezone = form.cleaned_data['timezone']
+            profile.save()
+            login(request, user)
             return redirect('users:login')
     
     else:
@@ -36,7 +39,7 @@ def set_timezone(request):
         tz = data.get("timezone")
         if tz:
             # Validate timezone string
-            import pytz
+            
             if tz in pytz.all_timezones:
                 # Save to user profile or session
                 profile = request.user.userprofile
