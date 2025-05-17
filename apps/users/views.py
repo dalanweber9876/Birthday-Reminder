@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomUserEditForm
 from django.http import JsonResponse
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.core.management import call_command
+from apps.birthdays.models import User
+from django.contrib import messages
 import json
 import pytz
 
@@ -11,8 +12,9 @@ import pytz
 
 def account(request):
     if request.user.is_authenticated:
-        call_command('send_reminders')
-        return render(request, 'users/account.html')
+        return render(request, 'users/account.html', {
+            "user": request.user,
+        })
     else:
         return redirect('users:login')
     
@@ -48,3 +50,23 @@ def set_timezone(request):
                 return JsonResponse({"status": "success"})
         return JsonResponse({"status": "error", "message": "Invalid timezone"}, status=400)
     return JsonResponse({"status": "error", "message": "Only POST allowed"}, status=405)
+
+def edit_account(request, id):
+    user =  User.objects.get(id = id)
+
+    if request.user != user:
+        return redirect('users:account')
+
+    if request.method == 'POST':
+        form = CustomUserEditForm(request.POST, instance=user) 
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account edited successfully!")
+            return redirect('users:account')
+    
+    else:
+        form = CustomUserEditForm(instance=user)
+
+    return render(request, 'users/edit_account.html', {
+        'form': form
+    })

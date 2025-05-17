@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
 from apps.birthdays.models import Birthday
 from .forms import BirthdayForm
-from datetime import date
 
 def home(request):
     if isinstance(request.user, AnonymousUser):

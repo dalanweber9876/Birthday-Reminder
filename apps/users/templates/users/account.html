@@ -1,3 +1,23 @@
 {% extends "base.html" %} {% block content %}
-<h1>This is your account!</h1>
+<div class="account">
+  <h1>Welcome {{user.username}}!</h1>
+
+  <div>
+    <h3>Username</h3>
+    <p>{{ user.username }}</p>
+  </div>
+
+  <div>
+    <h3>Email</h3>
+    <p>{{ user.email }}</p>
+  </div>
+
+  <div>
+    <h3>Timezone</h3>
+    <p>{{ user.userprofile.timezone }}</p>
+  </div>
+
+  <a href="{% url 'users:edit' user.id %}">Edit</a>
+  <a href="{% url 'birthdays:home' %}">Return Home</a>
+</div>
 {% endblock %}
