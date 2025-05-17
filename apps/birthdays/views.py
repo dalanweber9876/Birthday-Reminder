@@ -60,3 +60,6 @@ def view_birthday(request, id):
     return render(request, 'birthdays/view_birthday.html', {
         'birthday': birthday,
         })
+
+def attributions(request):
+    return render(request, 'birthdays/attributions.html')

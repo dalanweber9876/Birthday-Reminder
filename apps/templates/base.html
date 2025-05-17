@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Birthday Reminder</title>
+    <link rel="icon" href="{% static '/images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static '/base.css' %}" />
     <script>
       const setTimezoneUrl = "{% url 'users:set_timezone' %}";
@@ -18,6 +19,7 @@
   </head>
   <body>
     <header>
+      <img class="logo" src="{% static '/images/Vista Logos/logo-transparent-png.png' %}" alt="Birthday Reminder Logo">
       <h1>Birthday Reminder App</h1>
       <nav>
         <ul>
@@ -59,6 +61,7 @@
 
     <footer>
       <p>&copy; 2025 Birthday Reminder</p>
+      <a href="{% url 'birthdays:attributions' %}">Attributions</a>
     </footer>
   </body>
 </html>
