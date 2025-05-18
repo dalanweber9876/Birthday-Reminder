@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 html {
   background-image: url("/static/images/balloon_background.webp");
   background-repeat: repeat;
@@ -5,7 +7,22 @@ html {
   /* opacity: 80%; */
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Baloo 2", cursive;
+}
+
 body {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+
   width: 85%;
   background-color: #fffeeb;
   opacity: 95%;
