@@ -13,32 +13,34 @@
       const csrfToken = "{{ csrf_token }}";
     </script>
     <script src="{% static '/js/timezone.js' %}" defer></script>
+    <script src="{% static '/js/hamburger.js' %}" defer></script>
     {% block extra_head %}
     <!-- Additional CSS or JS can be added here -->
     {% endblock %}
   </head>
   <body>
     <header>
-      <img class="logo" src="{% static '/images/Vista Logos/logo-transparent-png.png' %}" alt="Birthday Reminder Logo">
-      <h1>Birthday Reminder App</h1>
-      <nav>
+      <div class="logo">
+        <img class="logo-image" src="{% static '/images/Vista Logos/logo.webp' %}" alt="Birthday Reminder Logo">
+        <h1 class="logo-text">Birthday Reminder</h1>
+      </div>
+
+      <div class="hamburger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <nav class="navigation">
+        <div class="close" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+        </div>
         <ul>
           <li><a href="{% url 'birthdays:home' %}">Home</a></li>
           <li>
             <a href="{% url 'birthdays:add' %}">Add Birthdays</a>
           </li>
           <li><a href="{% url 'users:account' %}">Profile</a></li>
-
-          {% if user.is_authenticated %}
-          <li>
-            <form method="post" action="{% url 'users:logout' %}">
-              {% csrf_token %}
-              <button type="submit">Logout</button>
-            </form>
-          </li>
-          {% else %}
-          <li><a href="{% url 'users:login' %}">Login</a></li>
-          {% endif %}
         </ul>
       </nav>
     </header>

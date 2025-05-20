@@ -1,12 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400..800&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
-html {
-  background-image: url("/static/images/balloon_background.webp");
-  background-repeat: repeat;
-  background-size: auto;
-  /* opacity: 80%; */
-}
-
+/*****************************************
+  * Layout
+******************************************/
 h1,
 h2,
 h3,
@@ -20,27 +16,149 @@ body {
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   color: #333;
-  background-color: #fff;
-  line-height: 1.6;
-
-  width: 85%;
   background-color: #fffeeb;
-  opacity: 95%;
-  padding: 20px;
-  margin: 50px auto;
-  min-height: 90vh;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+  line-height: 1.6;
+  margin: 0px;
 }
 
-a {
-  color: blue;
-  /* text-decoration: none; */
-}
-
-a:visited {
-  color: blue;
+/*****************************************
+  * Header
+******************************************/
+header {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgb(241, 209, 181);
 }
 
 .logo {
-  width: 300px;
+  display: flex;
+  width: 225px;
+  margin: 10px;
+}
+
+.logo-image {
+  width: 20%;
+  min-width: 100px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 25px;
+  line-height: 25px;
+  margin: auto;
+}
+
+.hamburger-menu {
+  margin: auto 0px;
+}
+
+.hamburger-menu:hover {
+  cursor: pointer;
+}
+
+.hamburger-menu.open {
+  visibility: hidden;
+}
+
+.hamburger-menu div {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+.navigation {
+  /* display: none; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #ffd6dc;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 1000;
+}
+
+.navigation.open {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #ffd6dc;
+  height: 100vh;
+  width: 250px;
+  transform: translateX(0);
+}
+
+.navigation ul {
+  margin-top: 50px;
+}
+
+.navigation ul li {
+  list-style-type: none;
+  padding: 20px 0px;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  text-shadow: 2px 2px 3px #ff4964;
+  font-weight: bold;
+}
+
+.navigation ul li a:visited {
+  color: black;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.close div {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  border-radius: 2px;
+}
+
+.close div:nth-of-type(1) {
+  transform: rotate(45deg);
+}
+
+.close div:nth-of-type(2) {
+  transform: rotate(-45deg);
+}
+
+/*****************************************
+  * Footer
+******************************************/
+footer {
+  background-color: rgb(241, 209, 181);
+}
+
+/*****************************************
+  * Medium Screen
+******************************************/
+@media (min-width: 500px) {
+  html {
+    background-image: url("/static/images/balloon_background.webp");
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
+  body {
+    padding: 20px;
+    margin: 50px auto;
+    min-height: 90vh;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+    opacity: 95%;
+    width: 85%;
+    background-color: #fffeeb;
+  }
 }
