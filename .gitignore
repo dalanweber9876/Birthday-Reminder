@@ -25,3 +25,6 @@ db.sqlite3
 
 # Others
 mvp.md
+
+# Large birthday generation bot
+apps/ai_messages/model/model.pth
