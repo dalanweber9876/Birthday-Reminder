@@ -56,10 +56,6 @@ header {
   cursor: pointer;
 }
 
-.hamburger-menu.open {
-  visibility: hidden;
-}
-
 .hamburger-menu div {
   width: 35px;
   height: 5px;

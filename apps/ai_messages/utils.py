@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def generate_birthday_message(birthday, tone="short and sweet"):
+def generate_message_openai(birthday, tone="short and sweet"):
     prompt = f"Write a short, thoughtful birthday message to {birthday.name}. They are the user's {birthday.relationship}. They would the message to be {tone}."
 
     if birthday.background:
@@ -21,5 +21,4 @@ def generate_birthday_message(birthday, tone="short and sweet"):
         return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error generating message: {e}"
-
     
